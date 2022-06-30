@@ -55,6 +55,7 @@ app.get("/", async (req, res) =>{
 
 app.use("/", async (req, res) =>{
     if (req.body) console.log("body object recieved: ", req.body);
+    console.log("Headers recieved: ", req.headers);
     res.status(200).json({
         msg: `Hi, ${userName}! This ${req.method} request was recieved at route '${req.url}'`,
         saltedHashName: await hashValue(userName),
