@@ -39,6 +39,15 @@ app.get("/", async (req, res) =>{
         msg: `Hi, ${userName}! This VERY SIMPLE app just shows your name and the subroute you are in. For example, in this case you are at: '${req.url}'. Try another route!`,
         saltedHashName: await hashValue(userName),
         stack,
+        originalRequestData: {
+            headers: req.headers,
+            protocol: req.protocol,
+            method: req.method,
+            url: req.url, // Alternativas podrían ser originalUrl o path
+            params: req.params,
+            query: req.query,
+            body: req.body || null,
+        },
     })
 })
 
@@ -47,6 +56,15 @@ app.use("/", async (req, res) =>{
         msg: `Hi, ${userName}! This ${req.method} request was recieved at route '${req.url}'`,
         saltedHashName: await hashValue(userName),
         stack,
+        originalRequestData: {
+            headers: req.headers,
+            protocol: req.protocol,
+            method: req.method,
+            url: req.url, // Alternativas podrían ser originalUrl o path
+            params: req.params,
+            query: req.query,
+            body: req.body || null,
+        },
     })
 })
 
